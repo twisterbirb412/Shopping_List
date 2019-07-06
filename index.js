@@ -1,4 +1,4 @@
-$(function() {
+function addItem()  {
     //when AddItem is pressed
     $("#js-shopping-list-form").submit(function (event) {
        //prevent default
@@ -8,28 +8,38 @@ $(function() {
         //create variable - take the text from the input and store it in the variable
         const newItem = $(this).find(input[name="shopping-list-entry"]).val();
         //create a new child object - add it to class Shopping List
-        $(".js-results").append(results);
+        $('.shopping-list').append(newItem);
 
     });
+}
 
 
-    //when someone hits check button
+function checkItem()  {
     $(".shopping-item-toggle").click(function(event) {
        //prevent default
        event.preventDefault();
 
         //needs to add "_checked" to the class name of list item
-        $("this.span").toggleClass (" shopping-item_checked");
-    });
 
-    //when someone hits delete
+        $(this).parent().siblings(`.shopping-item`).toggleClass(" shopping-item__checked");
+    });
+}
+
+function deleteItem()  {
     $(".shopping-item-delete").click(function(event) {
         //prevents default
         event.preventDefault();
 
         //deletes that object completely from the list
-        this.remove();
+        $(this).closest("li").remove();
 
     });
+}
 
-})
+function runShoppingList() {
+    addItem();
+    checkItem();
+    deleteItem();
+}
+
+$(runShoppingList);
